@@ -1,0 +1,8 @@
+.example-card {
+    max-width: 500px;
+}
+
+.center-content {
+    margin-top: auto;
+    text-align: -webkit-center;
+}
