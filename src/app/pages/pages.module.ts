@@ -9,6 +9,10 @@ import { SharedModule } from '../shared/shared.module';
 
 // Material
 import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+
 
 // Componentes
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -25,7 +29,10 @@ import { PersonaComponent } from './persona/persona.component';
     CommonModule,
     SharedModule,
     RouterModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   exports: [DashboardComponent],
 })

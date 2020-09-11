@@ -1,1 +1,80 @@
-<p>persona works!</p>
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Información Personal</h4>
+                        <p class="card-category">Felipe Franco</p>
+                    </div>
+                    <div class="card-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+
+                                        <mat-label>Tipo de Documento</mat-label>
+                                        <!-- [formControl]="emailFormControl" [errorStateMatcher]="matcher" -->
+                                        <input matInput placeholder="Ex. pat@example.com">
+                                        <mat-hint>Errors appear instantly!</mat-hint>
+                                        <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                            Please enter a valid email address
+                                        </mat-error>
+                                        <mat-error *ngIf="emailFormControl.hasError('required')">
+                                            Email is <strong>required</strong>
+                                        </mat-error> -->
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+
+                                        <mat-label>Número de Documento</mat-label>
+                                        <!-- [formControl]="emailFormControl" [errorStateMatcher]="matcher" -->
+                                        <input matInput placeholder="Número de Documento">
+                                        <mat-hint>Errors appear instantly!</mat-hint>
+                                        <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                                            Please enter a valid email address
+                                        </mat-error>
+                                        <mat-error *ngIf="emailFormControl.hasError('required')">
+                                            Email is <strong>required</strong>
+                                        </mat-error> -->
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-3 mt-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Primer Nombre</mat-label>
+                                        <input matInput placeholder="Primer Nombre">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3 mt-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Segundo Nombre</mat-label>
+                                        <input matInput placeholder="Segundo Nombre">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3 mt-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Primer Apellido</mat-label>
+                                        <input matInput placeholder="Primer Apellido" type="email">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3 mt-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Segundo Apellido:</mat-label>
+                                        <input matInput placeholder="Segundo Apellido">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update Profile</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

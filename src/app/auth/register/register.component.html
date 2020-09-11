@@ -3,36 +3,37 @@
         <mat-card-title>Registro De Usuario</mat-card-title>
     </mat-card-header>
 
-    <form class="example-form" autocomplete="off">
+    <form [formGroup]="registrarUsuarioForm" class="example-form" autocomplete="off" novalidate>
         <mat-card-content>
 
             <mat-form-field appearance="outline" class="example-full-width">
                 <mat-label>Email:</mat-label>
-                <input matInput placeholder="Emial" name="email">
+                <input matInput placeholder="Emial" [formControlName]="'email'" name="email">
                 <mat-icon matSuffix>email</mat-icon>
-                <mat-hint>Hint</mat-hint>
+                <mat-error *ngIf="hasError('email', 'required')">El email es requerido</mat-error>
+                <mat-error *ngIf="hasError('email', 'email')">El email debe tener un formato valido!!</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="example-full-width">
                 <mat-label>Usuario:</mat-label>
-                <input matInput placeholder="Usuario" name="usuario">
+                <input matInput placeholder="Usuario" [formControlName]="'usuario'" name="usuario">
                 <mat-icon matSuffix>person</mat-icon>
-                <mat-hint>Hint</mat-hint>
+                <mat-error *ngIf="hasError('usuario', 'required')">El usuario es requerido</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="example-full-width">
                 <mat-label>Clave:</mat-label>
-                <input matInput type="password" placeholder="Clave" name="clave">
+                <input matInput type="password" placeholder="Clave" [formControlName]="'clave'" name="clave">
                 <mat-icon matSuffix>vpn_key</mat-icon>
-                <mat-hint>Hint</mat-hint>
+                <mat-error *ngIf="hasError('clave', 'required')">La clave es requerido</mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline" class="example-full-width">
                 <mat-label>Confirmar Clave:</mat-label>
-                <input matInput type="password" placeholder="Clave" name="confirmarClave">
+                <input matInput type="password" placeholder="Clave" [formControlName]="'confirmarClave'" name="confirmarClave">
                 <mat-icon matSuffix>vpn_key</mat-icon>
-                <mat-hint>Hint</mat-hint>
+                <mat-error *ngIf="hasError('confirmarClave', 'required')">La clave es requerida</mat-error>
+                <mat-error *ngIf="hasError('confirmarClave', 'mustMatch')">La clave no coincide</mat-error>
             </mat-form-field>
-
             <!-- <mat-form-field appearance="outline">
                 <mat-label>Confirmar Clave:</mat-label>
                 <input matInput [matDatepicker]="picker" placeholder="Choose a date of birth" id="dateOfBirth" readonly (click)="picker.open()">
@@ -42,6 +43,6 @@
 
             <mat-checkbox class="example-margin">Checked</mat-checkbox>
         </mat-card-content>
-        <button mat-raised-button color="primary">Registrarse</button>
+        <button mat-raised-button color="primary" (click)="registrar()" [disabled]="!registrarUsuarioForm.valid">Registrarse</button>
     </form>
 </mat-card>

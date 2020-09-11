@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxWebstorageModule } from 'ngx-webstorage';
+
 // Rutas
 import { RouterModule } from '@angular/router';
 
@@ -31,8 +34,9 @@ import { TabLoginComponent } from './components/tab-login/tab-login.component';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    NgxWebstorageModule.forRoot(),
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
