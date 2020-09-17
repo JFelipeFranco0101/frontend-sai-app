@@ -26,13 +26,15 @@ import {MatSelectModule} from '@angular/material/select';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
 import { PersonaComponent } from './persona/persona.component';
+import { FormularioPersonaComponent } from './persona/formulario-persona/formulario-persona.component';
 
 
 @NgModule({
   declarations: [
     PagesComponent,
     DashboardComponent,
-    PersonaComponent],
+    PersonaComponent,
+    FormularioPersonaComponent],
   imports: [
     CommonModule,
     HttpClientModule,

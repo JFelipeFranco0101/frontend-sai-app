@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
@@ -8,6 +8,8 @@ import { TiposDocumentosService } from '../services/tipos-documentos.service';
 import { TransformadorPersona } from '../../transformadores/transformar-persona';
 import { AuthService } from '../../auth/services/auth.service';
 import { PersonaService } from '../services/persona.service';
+import { UsuarioToFront } from '../../models/login.model';
+import { PersonaBack } from '../../models/persona.models';
 
 @Component({
   selector: 'app-persona',
@@ -17,34 +19,16 @@ import { PersonaService } from '../services/persona.service';
 })
 export class PersonaComponent implements OnInit {
 
-  public registrarPersonaForm: FormGroup;
-  public tiposDocumentos;
-  public persona: PersonaFront;
+  public tiposDocumentos: TipoDocumento[];
+  public usuarioLogueado: UsuarioToFront;
 
-  constructor(private readonly fb: FormBuilder,
-              private readonly tipoDocumentoService: TiposDocumentosService,
+  constructor(private readonly tipoDocumentoService: TiposDocumentosService,
               private readonly authService: AuthService,
               private readonly personaService: PersonaService) { }
 
   ngOnInit(): void {
-    this.crearFormulario();
     this.cargarTiposDocumentos();
-  }
-
-  crearFormulario() {
-    this.registrarPersonaForm = this.fb.group({
-      tipoDocumento: ['', Validators.required],
-      numeroDocumento: ['', [Validators.required, Validators.minLength(3)]],
-      primerNombre: ['', Validators.required],
-      segundoNombre: [''],
-      primerApellido: ['', Validators.required],
-      segundoApellido: [''],
-      fechaNacimiento: ['', Validators.required],
-      email: ['', Validators.required],
-      direccionRecidencia: ['', Validators.required],
-      celular: ['', Validators.required],
-      telefono: ['', Validators.required],
-    });
+    this.cargarUsuarioLogueado();
   }
 
   cargarTiposDocumentos() {
@@ -54,16 +38,12 @@ export class PersonaComponent implements OnInit {
     });
   }
 
-  guardarPersona() {
-    this.persona = this.registrarPersonaForm.getRawValue();
-    this.registrarPersonaForm.disable();
-    const personaTransformada = TransformadorPersona.transformPersonaToPersonaBack(this.persona, this.authService.usuarioLogueado);
-    console.log('PERSONA YA TRANSFORMADA: ', personaTransformada);
-    this.personaService.persistirPersona(personaTransformada).subscribe(data => console.log(data));
-
+  cargarUsuarioLogueado() {
+    this.usuarioLogueado = this.authService.usuarioLogueado;
   }
 
-  public hasError(controlName: string, errorName: string) {
-    return this.registrarPersonaForm.controls[controlName].hasError(errorName);
+  guardarPersona(persona: PersonaBack) {
+    this.personaService.persistirPersona(persona).subscribe(data => console.log(data));
+
   }
 }
