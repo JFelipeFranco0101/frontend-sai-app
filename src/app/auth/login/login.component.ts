@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
+  hide = true;
 
   constructor(private readonly router: Router,
               private readonly fb: FormBuilder,

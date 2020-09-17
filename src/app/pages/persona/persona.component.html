@@ -8,70 +8,128 @@
                         <p class="card-category">Felipe Franco</p>
                     </div>
                     <div class="card-body">
-                        <form>
+                        <form [formGroup]="registrarPersonaForm" autocomplete="off" class="ng-untouched ng-pristine ng-valid">
+                            <!-- #################### FILA 1 #################### -->
                             <div class="row">
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
-
-                                        <mat-label>Tipo de Documento</mat-label>
-                                        <!-- [formControl]="emailFormControl" [errorStateMatcher]="matcher" -->
-                                        <input matInput placeholder="Ex. pat@example.com">
-                                        <mat-hint>Errors appear instantly!</mat-hint>
-                                        <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                                            Please enter a valid email address
-                                        </mat-error>
-                                        <mat-error *ngIf="emailFormControl.hasError('required')">
-                                            Email is <strong>required</strong>
-                                        </mat-error> -->
+                                        <mat-label>*Tipo de Documento</mat-label>
+                                        <mat-select [formControlName]="'tipoDocumento'" name="tipoDocumento">
+                                            <mat-option *ngFor="let documento of tiposDocumentos" [value]="documento.idTipoDocumento">{{documento.tipoDocumento}}</mat-option>
+                                        </mat-select>
+                                        <mat-error *ngIf="hasError('tipoDocumento', 'required')">El Tipo de Documento es requerido</mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-3">
                                     <mat-form-field class="example-full-width">
-
-                                        <mat-label>Número de Documento</mat-label>
-                                        <!-- [formControl]="emailFormControl" [errorStateMatcher]="matcher" -->
-                                        <input matInput placeholder="Número de Documento">
-                                        <mat-hint>Errors appear instantly!</mat-hint>
-                                        <!-- <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                                            Please enter a valid email address
-                                        </mat-error>
-                                        <mat-error *ngIf="emailFormControl.hasError('required')">
-                                            Email is <strong>required</strong>
-                                        </mat-error> -->
+                                        <mat-label>*Número de Documento</mat-label>
+                                        <input matInput placeholder="Número de Documento" [formControlName]="'numeroDocumento'" name="numeroDocumento">
+                                        <mat-error *ngIf="hasError('numeroDocumento', 'required')">El Número de Documento es requerido</mat-error>
+                                        <mat-error *ngIf="hasError('numeroDocumento', 'minlength')">El Número de Documento debe tener minimo 3 numeros</mat-error>
                                     </mat-form-field>
                                 </div>
                             </div>
+                            <!-- #################### FIN FILA 1 #################### -->
 
-
+                            <!-- #################### FILA 2 #################### -->
                             <div class="row">
                                 <div class="col-md-3 mt-3">
                                     <mat-form-field class="example-full-width">
-                                        <mat-label>Primer Nombre</mat-label>
-                                        <input matInput placeholder="Primer Nombre">
+                                        <mat-label>*Primer Nombre</mat-label>
+                                        <input matInput placeholder="Primer Nombre" [formControlName]="'primerNombre'" name="primerNombre">
+                                        <mat-error *ngIf="hasError('primerNombre', 'required')">El Primer Nombre es requerido</mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-3 mt-3">
                                     <mat-form-field class="example-full-width">
-                                        <mat-label>Segundo Nombre</mat-label>
-                                        <input matInput placeholder="Segundo Nombre">
+                                        <mat-label>Segundo Nombre:</mat-label>
+                                        <input matInput placeholder="Segundo Nombre" [formControlName]="'segundoNombre'" name="segundoNombre">
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-3 mt-3">
                                     <mat-form-field class="example-full-width">
-                                        <mat-label>Primer Apellido</mat-label>
-                                        <input matInput placeholder="Primer Apellido" type="email">
+                                        <mat-label>*Primer Apellido</mat-label>
+                                        <input matInput placeholder="Primer Apellido" [formControlName]="'primerApellido'" name="email">
+                                        <mat-error *ngIf="hasError('primerApellido', 'required')">El Primer Apellido es requerido</mat-error>
                                     </mat-form-field>
                                 </div>
                                 <div class="col-md-3 mt-3">
                                     <mat-form-field class="example-full-width">
                                         <mat-label>Segundo Apellido:</mat-label>
-                                        <input matInput placeholder="Segundo Apellido">
+                                        <input matInput placeholder="Segundo Apellido" [formControlName]="'segundoApellido'" name="segundoApellido">
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update Profile</button>
+                            <!-- #################### FIN FILA 2 #################### -->
+
+                            <!-- #################### FILA 3 #################### -->
+                            <div class="row">
+                                <div class="col-md-3 mt-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>*Fecha de Nacimiento:</mat-label>
+                                        <input matInput [matDatepicker]="picker" placeholder="Fecha de Nacimiento" [formControlName]="'fechaNacimiento'" name="fechaNacimiento" id="dateOfBirth" readonly (click)="picker.open()">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                        <mat-error *ngIf="hasError('fechaNacimiento', 'required')">La Fecha de Nacimiento es requerida</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3 mt-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>*Correo Electronico:</mat-label>
+                                        <input matInput placeholder="Correo Electronico" [formControlName]="'email'" name="email">
+                                        <mat-error *ngIf="hasError('email', 'required')">El Correo Electronico es requerido</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                                <div class="col-md-6 mt-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>*Dirección de Recidencia:</mat-label>
+                                        <input matInput placeholder="Dirección de Recidencia" [formControlName]="'direccionRecidencia'" name="direccionRecidencia">
+                                        <mat-error *ngIf="hasError('direccionRecidencia', 'required')">La Dirección es requerido</mat-error>
+                                    </mat-form-field>
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-3 mt-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>*Celular:</mat-label>
+                                        <input matInput placeholder="Celular" [formControlName]="'celular'" name="celular">
+                                        <mat-error *ngIf="hasError('celular', 'required')">El Número de Celular es requerido</mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3 mt-3">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>*Telefono:</mat-label>
+                                        <input matInput placeholder="Telefono" [formControlName]="'telefono'" name="telefono">
+                                        <mat-error *ngIf="hasError('telefono', 'required')">El Número de Telefono es requerido</mat-error>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <button mat-raised-button type="button" (click)="guardarPersona()" class="btn btn-rose pull-right">Guardar</button>
+
                             <div class="clearfix"></div>
+
                         </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <a href="javascript:void(0)">
+                            <img class="img" src="./assets/img/faces/marc.jpg" />
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-category text-gray">CEO / Co-Founder</h6>
+                        <h4 class="card-title">Alec Thompson</h4>
+                        <p class="card-description">
+                            Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+                        </p>
+                        <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
                     </div>
                 </div>
             </div>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { RegistrarUsuario } from '../../models/registrar-usuario.models';
@@ -22,7 +22,8 @@ export class AuthService {
   }
 
   login(loginToBack: LoginToBack): Observable<boolean> {
-    return this.httpCliente.post<LoginToFront>(`${this.url}login`, loginToBack)
+    const headers = { 'Content-Type': 'application/json' };
+    return this.httpCliente.post<LoginToFront>(`${this.url}login`, loginToBack, { headers })
       .pipe(map((data: LoginToFront) => {
         this.localStorage.store('authenticationToken', data.authenticationToken);
         this.localStorage.store('usuario', data.usuario);
@@ -34,5 +35,13 @@ export class AuthService {
   actualizarUsuario(usuarioActualizar: RegistrarUsuario): Observable<any> {
     return this.httpCliente.put(`${this.url}actualizarUsuario`, usuarioActualizar);
 
+  }
+
+  get token(): string {
+    return this.localStorage.retrieve('authenticationtoken') || '';
+  }
+
+  get usuarioLogueado(): UsuarioToFront {
+    return this.localStorage.retrieve('usuario');
   }
 }
