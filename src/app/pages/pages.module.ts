@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 
 
 // Componentes
@@ -29,6 +30,7 @@ import { PagesComponent } from './pages.component';
 import { PersonaComponent } from './persona/persona.component';
 import { FormularioPersonaComponent } from './persona/formulario-persona/formulario-persona.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { FormularioPerfilComponent } from './perfil/formulario-perfil/formulario-perfil.component';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     DashboardComponent,
     PersonaComponent,
     FormularioPersonaComponent,
-    PerfilComponent],
+    PerfilComponent,
+    FormularioPerfilComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -52,7 +55,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     MatInputModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ],
   exports: [DashboardComponent],
   providers: [
