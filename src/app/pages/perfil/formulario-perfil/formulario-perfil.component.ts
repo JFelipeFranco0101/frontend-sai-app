@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TransformadorPerfil } from 'src/app/transformadores/transformador-perfil';
 import { UsuarioToFront } from '../../../models/login.model';
 
 @Component({
@@ -13,6 +14,7 @@ export class FormularioPerfilComponent implements OnInit {
   public isDisabledForm = true;
 
   @Input() public usuarioLogueado: UsuarioToFront;
+  @Output() public actualizarPerfilUsuairo = new EventEmitter<any>();
 
   constructor(private readonly fb: FormBuilder) { }
 
@@ -31,6 +33,25 @@ export class FormularioPerfilComponent implements OnInit {
   inicializarFormulario() {
     this.formularioPerfilGroup.get('usuario').setValue(this.usuarioLogueado.nombreUsuario);
     this.formularioPerfilGroup.get('email').setValue(this.usuarioLogueado.emial);
+    this.formularioPerfilGroup.disable();
+  }
+
+  actualizarPerfil() {
+    const perfilForm = this.formularioPerfilGroup.getRawValue();
+    const idUsuarioLogueado = this.usuarioLogueado.idUsuario;
+    const perfilBack = TransformadorPerfil.transformadorPerfilToPerfilBack(perfilForm, idUsuarioLogueado);
+    this.actualizarPerfilUsuairo.emit(perfilBack);
+    this.isDisabledForm = !this.isDisabledForm;
+    this.formularioPerfilGroup.disable();
+  }
+
+  editarPerfil() {
+    this.isDisabledForm = !this.isDisabledForm;
+    this.formularioPerfilGroup.enable();
+  }
+
+  cancelarEdicionPerfil() {
+    this.isDisabledForm = !this.isDisabledForm;
     this.formularioPerfilGroup.disable();
   }
 

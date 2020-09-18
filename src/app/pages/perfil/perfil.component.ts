@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { UsuarioToFront } from '../../models/login.model';
 import { AuthService } from '../../auth/services/auth.service';
+import { PerfilService } from '../services/perfil.service';
+import { RegistrarUsuario } from '../../models/registrar-usuario.models';
 
 @Component({
   selector: 'app-perfil',
@@ -15,6 +17,11 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
     this.cargarInformacionUsuarioLogueado();
+  }
+
+  actualizarPerfil(infoPerfil: RegistrarUsuario) {
+    console.log(infoPerfil);
+    this.authService.actualizarUsuario(infoPerfil).subscribe(data => console.log(data));
   }
 
   cargarInformacionUsuarioLogueado() {
