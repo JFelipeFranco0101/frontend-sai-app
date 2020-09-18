@@ -48,7 +48,9 @@
 
                             </div>
 
-                            <button mat-raised-button type="button" class="btn btn-primary pull-right">Guardar</button>
+                            <button mat-raised-button *ngIf="!isDisabledForm" type="button" (click)="actualizarPerfil()" class="btn btn-primary pull-right">Guardar</button>
+                            <button mat-raised-button *ngIf="isDisabledForm" type="button" (click)="editarPerfil()" class="btn btn-success pull-right">Editar</button>
+                            <button mat-raised-button *ngIf="!isDisabledForm" type="button" (click)="cancelarEdicionPerfil()" class="btn btn-success pull-right">Cancelar</button>
 
                             <div class="clearfix"></div>
                         </form>
