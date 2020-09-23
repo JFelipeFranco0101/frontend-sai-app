@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UsuarioToFront } from '../../models/login.model';
 import { AuthService } from '../../auth/services/auth.service';
-import { PerfilService } from '../services/perfil.service';
 import { RegistrarUsuario } from '../../models/registrar-usuario.models';
 
 @Component({
