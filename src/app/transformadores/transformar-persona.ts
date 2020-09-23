@@ -4,7 +4,6 @@ import { UsuarioToFront } from '../models/login.model';
 export class TransformadorPersona {
 
     static transformPersonaToPersonaBack(personaFront: PersonaFront, usuario: UsuarioToFront): PersonaBack {
-        console.log('Esta es la berraca informacion: ', personaFront);
         return {
             celular: personaFront.celular,
             correoElectronico: personaFront.email,
@@ -24,7 +23,7 @@ export class TransformadorPersona {
             usuario: {
                 email: usuario.emial,
                 id: usuario.idUsuario,
-                usaurio: usuario.nombreUsuario
+                usuario: usuario.nombreUsuario
             }
         };
     }

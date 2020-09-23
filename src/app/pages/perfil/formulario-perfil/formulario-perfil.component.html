@@ -1,0 +1,62 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-icon card-header-rose">
+                        <div class="card-icon">
+                            <i class="material-icons">perm_identity</i>
+                        </div>
+                        <h4 class="card-title">
+                            Editar Perfil
+                        </h4>
+                    </div>
+                    <div class="card-body">
+
+                        <form [formGroup]="formularioPerfilGroup" autocomplete="off" class="ng-untouched ng-pristine ng-valid">
+
+                            <div class="row justify-content-center">
+                                <div class="col-sm-4">
+                                    <div class="picture-container">
+                                        <div class="picture"><img src="./assets/img/default-avatar.png" id="wizardPicturePreview" title="" class="picture-src"><input type="file" id="wizard-picture"></div>
+                                        <h6 class="description">Choose Picture</h6>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-sm-6">
+                                    <div class="mt-3">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>*Usuario</mat-label>
+                                            <input matInput placeholder="Número de Documento" [formControlName]="'usuario'" name="usuario">
+                                            <mat-icon matSuffix>face</mat-icon>
+                                            <mat-error *ngIf="hasError('usuario', 'required')">El Usuario es requerido</mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+
+                                    <div class="mt-3">
+                                        <mat-form-field class="example-full-width">
+                                            <mat-label>*Correo Electronico:</mat-label>
+                                            <input matInput placeholder="Número de Documento" [formControlName]="'email'" name="email">
+                                            <mat-icon matSuffix>email</mat-icon>
+                                            <mat-error *ngIf="hasError('email', 'required')">El Correo Electronico es requerido</mat-error>
+                                            <mat-error *ngIf="hasError('email', 'email')">El Correo Electronico no tiene un formato valido</mat-error>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <button mat-raised-button *ngIf="!isDisabledForm" type="button" (click)="actualizarPerfil()" class="btn btn-primary pull-right">Guardar</button>
+                            <button mat-raised-button *ngIf="isDisabledForm" type="button" (click)="editarPerfil()" class="btn btn-success pull-right">Editar</button>
+                            <button mat-raised-button *ngIf="!isDisabledForm" type="button" (click)="cancelarEdicionPerfil()" class="btn btn-success pull-right">Cancelar</button>
+
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

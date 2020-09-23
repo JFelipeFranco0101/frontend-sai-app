@@ -1,6 +1,6 @@
 export interface RegistrarUsuario {
     id?: number;
     email: string;
-    usaurio: string;
+    usuario: string;
     clave?: string;
 }

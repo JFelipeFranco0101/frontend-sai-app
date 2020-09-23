@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxWebstorageModule } from 'ngx-webstorage';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Rutas
 import { RouterModule } from '@angular/router';
@@ -35,6 +36,7 @@ import { TabLoginComponent } from './components/tab-login/tab-login.component';
     CommonModule,
     RouterModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     NgxWebstorageModule.forRoot(),
     MatCardModule,

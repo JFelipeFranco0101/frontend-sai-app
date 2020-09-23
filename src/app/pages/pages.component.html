@@ -4,8 +4,9 @@
     <mat-drawer mode="side" [opened]="sideBarOpen">
         <app-sidebar></app-sidebar>
     </mat-drawer>
+    <!-- [@routeAnimations]="prepareRoute(outlet)" -->
     <mat-drawer-content>
-
+        <!-- #outlet="outlet" -->
         <router-outlet></router-outlet>
     </mat-drawer-content>
 

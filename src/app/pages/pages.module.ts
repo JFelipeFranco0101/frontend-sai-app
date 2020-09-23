@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxWebstorageModule } from 'ngx-webstorage';
 
 import { TokenInterceptor } from '../interceptors/token-interceptor';
@@ -20,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 
 
 // Componentes
@@ -27,6 +29,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { PagesComponent } from './pages.component';
 import { PersonaComponent } from './persona/persona.component';
 import { FormularioPersonaComponent } from './persona/formulario-persona/formulario-persona.component';
+import { PerfilComponent } from './perfil/perfil.component';
+import { FormularioPerfilComponent } from './perfil/formulario-perfil/formulario-perfil.component';
 
 
 @NgModule({
@@ -34,9 +38,12 @@ import { FormularioPersonaComponent } from './persona/formulario-persona/formula
     PagesComponent,
     DashboardComponent,
     PersonaComponent,
-    FormularioPersonaComponent],
+    FormularioPersonaComponent,
+    PerfilComponent,
+    FormularioPerfilComponent],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule,
@@ -48,7 +55,8 @@ import { FormularioPersonaComponent } from './persona/formulario-persona/formula
     MatInputModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ],
   exports: [DashboardComponent],
   providers: [
